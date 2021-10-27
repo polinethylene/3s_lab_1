@@ -1,2 +1,2 @@
-# lab_1
+# lab 1 from 3rd semester
  
