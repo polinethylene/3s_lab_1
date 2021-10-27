@@ -19,16 +19,12 @@ def toString(seq):
     s += "]"
     return s
 
-<<<<<<< Updated upstream
-=======
-
 def decreasingCompare(a,b):
     return a > b
 
 def increasingCompare(a,b):
     return a < b
 
->>>>>>> Stashed changes
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -157,13 +153,8 @@ class MainWindow(QMainWindow):
             self.items = list(data)
             if str(self.utilsWidget.seqBox.currentText()) == "ArraySequence":
                 seq = PySequence.ArraySequence_int(self.items, len(self.items))
-<<<<<<< Updated upstream
-                sort_type = PySequence.ShellSort_int() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_int()
-=======
                 sort_type = PySequence.ShellSort_int(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
                     else PySequence.QuickSort_int(compare)
->>>>>>> Stashed changes
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
             else:
