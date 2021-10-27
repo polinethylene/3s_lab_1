@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/functional.h>
 #include <iostream>
 #include "ArraySeq.h"
 #include "LinkedListSeq.h"
@@ -82,16 +83,28 @@ void declare_sort(py::module &m, const string& typestr1)
     string pyclass_name = string("ISorter") + "_" + typestr1;
     py::class_<ISorter <T>, PyVirtualClass<T>>(m,pyclass_name.c_str(),py::module_local())
         .def(py::init<>())
+<<<<<<< Updated upstream
+=======
+        .def(py::init<std::function<bool(T,T)>>())
+>>>>>>> Stashed changes
         .def("Sort", &ISorter <T>::Sort);
 
     string pyshell_name = string("ShellSort") + "_" + typestr1;
     py::class_<ShellSort<T>, ISorter<T>>(m, pyshell_name.c_str())
         .def(py::init<>())
+<<<<<<< Updated upstream
+=======
+        .def(py::init<std::function<bool(T,T)>>())
+>>>>>>> Stashed changes
         .def("Sort", &ShellSort <T>::Sort);
 
     string pyquick_name = string("QuickSort") + "_" + typestr1;
     py::class_<QuickSort<T>, ISorter<T>>(m, pyquick_name.c_str())
         .def(py::init<>())
+<<<<<<< Updated upstream
+=======
+        .def(py::init<std::function<bool(T,T)>>())
+>>>>>>> Stashed changes
         .def("Sort", &QuickSort <T>::Sort);
 };
 

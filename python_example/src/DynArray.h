@@ -46,7 +46,7 @@ public:
         data = new T[1]();
     }
 
-    DynamicArray(vector<T> items, int count){            //Копировать элементы из переданного массива
+    DynamicArray(vector<T> items, int count){
         if (count < 0){
             throw runtime_error("count < 0");
         }
@@ -60,7 +60,21 @@ public:
         length = count;
     }
 
-    explicit DynamicArray(int size) {            //Создать массив заданной длины
+    DynamicArray(T* items, int count){
+        if (count < 0){
+            throw runtime_error("count < 0");
+        }
+        data = new T[count]();
+        if (items == NULL){
+            throw runtime_error("NULL list");
+        }
+        for (int i = 0; i < count; i++){
+            data[i] = items[i];
+        }
+        length = count;
+    }
+
+    explicit DynamicArray(int size) {
         if (size < 0){
             throw runtime_error("count < 0");
         }
@@ -76,14 +90,14 @@ public:
         delete[] data;
     }
 
-    T &Get(int index) {                                //Получить элемент по индексу
+    T &Get(int index) {
         if (index >= length || index < 0) {
             throw runtime_error("Index out of range");
         }
         return *(data + index);
     }
 
-    int GetSize() {        //Получить размер массива
+    int GetSize() {
         return length;
     }
     void Resize(int newSize){
@@ -94,7 +108,7 @@ public:
         length = newSize;
     }
 
-    void Set(int index, T value){    //Задать элемент по индексу
+    void Set(int index, T value){
         if (index>=length){
             Resize(index+1);
         }
@@ -104,12 +118,6 @@ public:
         data[index] = value;
     }
 
-    void Print(){
-        for (int i = 0; i < length; i++) {
-            cout << data[i] << ' ';
-        }
-        cout << endl;
-    }
 };
 
 #endif //LAB_2_DYNARRAY_H

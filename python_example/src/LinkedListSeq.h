@@ -8,15 +8,15 @@
 using namespace std;
 
 template <class T>
-class LinkedListSequence : Sequence<T>{
+class LinkedListSequence : public Sequence<T>{
 private:
     LinkedList<T> items;
 public:
-    LinkedListSequence<T> &operator=(const Sequence<T> &sequence){
-        delete this->items;
-        this->items = LinkedList<T> (*sequence.items);
-        return *this;
-    }
+//    LinkedListSequence<T> &operator=(const Sequence<T> &sequence){
+//        delete this->items;
+//        this->items = LinkedList<T> (*sequence.items);
+//        return *this;
+//    }
 
     LinkedListSequence(){
         this->items = LinkedList<T> ();
@@ -30,6 +30,10 @@ public:
     }
 
     LinkedListSequence(vector<T> items, int count){
+        this->items = LinkedList<T> (items, count);
+    }
+
+    LinkedListSequence(T* items, int count){
         this->items = LinkedList<T> (items, count);
     }
 
@@ -99,17 +103,6 @@ public:
         return res;
     }
 
-//    LinkedListSequence <T>* Concat(LinkedListSequence <T> *list){
-//        LinkedListSequence<T> *res = new LinkedListSequence<T>();
-//        for(int i=0; i<this->GetLength(); i++){
-//            res->Append(this->Get(i));
-//        }
-//        for(int i=0; i<list->GetLength(); i++){
-//            res->Append(list->Get(i));
-//        }
-//        return res;
-//    }
-
     LinkedListSequence <T>* Map(T (f)(T )){
         LinkedListSequence<T> *new_list = new LinkedListSequence<T>();
         for(int i=0; i<items.GetLength(); i++){
@@ -138,14 +131,11 @@ public:
         return ans;
     }
 
-    LinkedListSequence<T>* Sort(ISorter<T> &f) {
+    // for pybind use ISorter<T> &f
+    LinkedListSequence<T>* Sort(ISorter<T> &&f) {
         LinkedListSequence<T>* newseq = new LinkedListSequence<T>(*this);
         f.Sort(*newseq);
         return newseq;
-    }
-
-    void Print(){
-        items.Print();
     }
 
     bool operator==(LinkedListSequence<T> list) {

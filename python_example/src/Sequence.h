@@ -19,9 +19,8 @@ public:
     virtual void Prepend(T item)=0;
     virtual void InsertAt(T item, int index)=0;
     virtual Sequence <T>* Concat(Sequence <T> *list)=0;
-    virtual Sequence<T>* Sort(ISorter<T> &f)=0;
+    virtual Sequence<T>* Sort(ISorter<T> &&f)=0;              // for pybind use ISorter<T> &f
     virtual ~Sequence(){};
-    virtual void Print()=0;
 };
 
 #endif //LAB_2_SEQUENCE_H

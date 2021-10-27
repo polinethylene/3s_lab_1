@@ -16,6 +16,7 @@ public:
     ShellSort()=default;
 
     void Sort(Sequence<T>& seq) {
+<<<<<<< Updated upstream
         for(int s=seq.GetLength()/2; s>0; s/=2){
             for(int i=0; i<seq.GetLength(); i++){
                 for(int j=i+s; j<seq.GetLength(); j+=s){
@@ -23,6 +24,16 @@ public:
                         swap(seq.Get(i),seq.Get(j));
                     }
                 }
+=======
+        for (int gap = seq.GetLength()/2; gap > 0; gap /= 2) {
+            for (int i = gap; i < seq.GetLength(); i += 1) {
+                T temp = seq.Get(i);
+                int j;
+                for (j = i; j >= gap && this->cmp(seq.Get(j-gap), temp); j -= gap)
+                    seq.Get(j) = seq.Get(j-gap);
+
+                seq.Get(j) = temp;
+>>>>>>> Stashed changes
             }
         }
     }

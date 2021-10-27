@@ -1,38 +1,38 @@
 QMainWindow {
-    background-color: white;
+    background-color: #faf1e1;
 }
 
 QLabel {
-    color: black;
-    font: bold 14px;
+    color: #f46b60;
+    font: bold 12px;
 }
 
 QPushButton {
-    color: black;
-    background-color: white;
+    color: #f46b60;
+    background-color: #a5ddd7;
     border-style: outset;
     border-width: 3px;
     border-radius: 10px;
-    border-color: black;
-    font: bold 14px;
+    border-color: #90c1bc;
+    font: bold 12px;
     min-width: 10em;
     max-width: 13em;
     padding: 6px;
 }
 
 QPushButton:pressed, QPushButton:on {
-    background: lightgrey;
+    background: #90c1bc;
 }
 
 QComboBox {
-    color: black;
-    font: bold 14px;
-    background-color: white;
-    selection-background-color: lightgray;
+    color: #fcf6ec;
+    font: bold 12px;
+    background-color: #f46b60;
+    selection-background-color: #d65e54;
     border-style: outset;
     border-width: 3px;
     border-radius: 10px;
-    border-color: black;
+    border-color: #90c1bc;
     min-width: 10em;
     max-width: 13em;
     padding: 6px;
@@ -47,40 +47,43 @@ QComboBox::drop-down {
     border-bottom-right-radius: 10px;
 }
 
+/*
 QComboBox::down-arrow {
     image: url(./img/arrow.jpeg);
     width: 13px;
 }
+*/
 
 QComboBox QAbstractItemView {
-    border: 2px solid white;
-    background-color: white;
+    border: 2px solid #f46b60;
+    background-color: #f46b60;
 }
 
 QLineEdit {
-    color: black;
-    font: bold 14px;
-    background-color: white;
+    color: #f46b60;
+    font: bold 12px;
+    background-color: #a5ddd7;
     border-style: outset;
     border-width: 3px;
     border-radius: 10px;
-    border-color: black;
+    border-color: #90c1bc;
     min-width: 10em;
     max-width: 13em;
     padding: 6px;
-    selection-background-color: darkgray;
+    selection-background-color: #90c1bc;
 }
 
 QTextEdit#display {
-    color: black;
-    font: 14px;
-    background-color: white;
+    color: #90c1bc;
+    font: 12px;
+    background-color: #FBF4E8;
     border-style: outset;
     border-width: 3px;
     border-radius: 10px;
-    border-color: black;
+    border-color: #90c1bc;
     min-width: 10em;
-    min-height: 20em;
+    min-height: 23em;
     padding: 6px;
-    selection-background-color: darkgray;
+    selection-background-color: #90c1bc;
 }
+

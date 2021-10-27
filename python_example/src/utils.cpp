@@ -92,3 +92,82 @@ ArraySequence<string> get_seq_randstring(int length) {
     delete[] items;
     return seq;
 }
+
+LinkedListSequence<int> get_listseq_randint(int length) {
+    srand (static_cast <unsigned> (time(0)));
+    if (length <= 0) {
+        throw runtime_error("Incorrect length");
+    }
+    int *items = new int[length]();
+    int value;
+    for (int i = 0; i < length; i++) {
+        value = rand() % 20000 - 10000;
+        items[i] = value;
+    }
+    LinkedListSequence<int> seq = LinkedListSequence<int>(items, length);
+    delete[] items;
+    return seq;
+}
+
+LinkedListSequence<float> get_listseq_randfloat(int length) {
+    srand (static_cast <unsigned> (time(0)));
+    if (length <= 0) {
+        throw runtime_error("Incorrect length");
+    }
+    float *items = new float[length]();
+    float value;
+    float LO = -10000, HI = 10000;
+    for (int i = 0; i < length; i++) {
+        value = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
+        items[i] = value;
+    }
+    LinkedListSequence<float> seq = LinkedListSequence<float>(items, length);
+    delete[] items;
+    return seq;
+}
+
+LinkedListSequence<Complex> get_listseq_randcomplex(int length) {
+    srand (static_cast <unsigned> (time(0)));
+    if (length <= 0) {
+        throw runtime_error("Incorrect length");
+    }
+    Complex *items = new Complex[length]();
+    float re,im;
+    float LO = -100000, HI = 100000;
+    for (int i = 0; i < length; i++) {
+        re = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
+        im = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
+        items[i] = Complex(re,im);
+    }
+    LinkedListSequence<Complex> seq = LinkedListSequence<Complex>(items, length);
+    delete[] items;
+    return seq;
+}
+
+LinkedListSequence<string> get_listseq_randstring(int length) {
+    srand (static_cast <unsigned> (time(0)));
+    if (length <= 0) {
+        throw runtime_error("Incorrect length");
+    }
+    string *items = new string[length]();
+    static const char alphanum[] =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
+
+    int len = 4;
+
+    for (int j = 0; j < length; ++j) {
+        string tmp;
+        tmp.reserve(len);
+
+        for (int i = 0; i < len; ++i)
+            tmp += alphanum[rand() % (sizeof(alphanum) - 1)];
+
+        items[j] = tmp;
+    }
+
+    LinkedListSequence<string> seq = LinkedListSequence<string>(items, length);
+    delete[] items;
+    return seq;
+}

@@ -117,6 +117,21 @@ public:
         length = count;
     }
 
+    LinkedList (T* items, int count){
+        if (count < 0){
+            throw runtime_error("count < 0");
+        }
+        if (items == NULL){
+            throw runtime_error("NULL list");
+        }
+        head = NULL;
+        tail = NULL;
+        for (int i = 0; i < count; i++) {
+            Append(items[i]);
+        }
+        length = count;
+    }
+
     LinkedList (const LinkedList <T> & list ) : LinkedList() {
         *this = list;
     }
@@ -243,14 +258,6 @@ public:
         return new_list;
     }
 
-    void Print(){
-        Elem *ptr = head;
-        for (int i = 0; i < length; i++) {
-            cout << ptr->data << ' ';
-            ptr = ptr->next;
-        }
-        cout << endl;
-    }
 };
 
 #endif //LAB_2_LINKLIST_H

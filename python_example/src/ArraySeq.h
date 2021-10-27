@@ -1,13 +1,11 @@
 #ifndef LAB_2_ARRAYSEQ_H
 #define LAB_2_ARRAYSEQ_H
 
-#include <pybind11/pybind11.h>
 #include <iostream>
 #include "DynArray.h"
 #include "Sequence.h"
 #include "ISorter.h"
 
-namespace py = pybind11;
 using namespace std;
 
 template <class T>
@@ -15,14 +13,6 @@ class ArraySequence : public Sequence<T>{
 private:
     DynamicArray<T> items;
 public:
-//    ArraySequence<T> &operator=(const Sequence<T> &sequence){
-//        if (items!=NULL) {
-//            delete this->items;
-//        }
-//        this->items = DynamicArray<T> (*sequence.items);
-//        return *this;
-//    }
-
     ArraySequence(){
         items = DynamicArray<T> ();
     }
@@ -39,6 +29,16 @@ public:
             throw runtime_error("Incorrect length");
         }
         if (got_items.size()==0){
+            throw runtime_error("NULL items");
+        }
+        items = DynamicArray<T> (got_items, count);
+    }
+
+    ArraySequence(T* got_items, int count){
+        if (count<=0){
+            throw runtime_error("Incorrect length");
+        }
+        if (got_items==NULL){
             throw runtime_error("NULL items");
         }
         items = DynamicArray<T> (got_items, count);
@@ -114,18 +114,6 @@ public:
         return new_list;
     }
 
-//    ArraySequence <T>* Concat(ArraySequence <T> *list){
-//        ArraySequence<T> *new_list = new ArraySequence<T>();
-//        for(int i=0; i<items.GetSize(); i++){
-//            new_list->Append(this->Get(i));
-//        }
-//        for(int i=0; i<list->GetLength(); i++){
-//            new_list->Append(list->Get(i));
-//        }
-//
-//        return new_list;
-//    }
-
     ArraySequence <T>* Map(T (f)(T )){
         ArraySequence<T> *new_list = new ArraySequence<T>();
         for(int i=0; i<items.GetSize(); i++){
@@ -156,24 +144,13 @@ public:
         return ans;
     }
 
-    ArraySequence<T>* Sort(ISorter<T> &f) {
+    // for pybind use ISorter<T> &f
+    ArraySequence<T>* Sort(ISorter<T> &&f) {
         ArraySequence<T>* newseq = new ArraySequence<T>(*this);
         f.Sort(*newseq);
         return newseq;
     }
 
-    string SeqToString() {
-        string s = "[";
-        for (int i = 0; i < this->GetLength(); i++) {
-            s = s + to_string(this->Get(i)) + ",";
-        }
-        s[s.length()-1] = ']';
-        return s;
-    }
-
-    void Print(){
-        items.Print();
-    }
 };
 
 #endif //LAB_2_ARRAYSEQ_H

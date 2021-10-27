@@ -19,6 +19,16 @@ def toString(seq):
     s += "]"
     return s
 
+<<<<<<< Updated upstream
+=======
+
+def decreasingCompare(a,b):
+    return a > b
+
+def increasingCompare(a,b):
+    return a < b
+
+>>>>>>> Stashed changes
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -28,6 +38,9 @@ class MyWidget(QtWidgets.QWidget):
         self.seqBox = QtWidgets.QComboBox()
         self.seqBox.addItem("ListSequence")
         self.seqBox.addItem("ArraySequence")
+        self.comBox = QtWidgets.QComboBox()
+        self.comBox.addItem("increasing")
+        self.comBox.addItem("decreasing")
         self.typeBox = QtWidgets.QComboBox()
         self.typeBox.addItem("int")
         self.typeBox.addItem("float")
@@ -49,6 +62,7 @@ class MyWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.typeBox)
         self.layout.addWidget(self.lengthLineEdit)
         self.layout.addWidget(self.sortBox)
+        self.layout.addWidget(self.comBox)
         self.layout.addWidget(self.genButton)
         self.layout.addWidget(self.sortButton)
         self.layout.addWidget(self.comButton)
@@ -137,19 +151,25 @@ class MainWindow(QMainWindow):
     def sortMagic(self):
         text = self.inputWidget.inputTextEdit.toPlainText()
         text_clear = re.sub("[^\w\.\s\-]", "",text)
+        compare = increasingCompare if str(self.utilsWidget.comBox.currentText()) == "increasing" else decreasingCompare
         if str(self.utilsWidget.typeBox.currentText()) == "int":
             data = np.fromstring(text_clear, dtype=int, sep=' ')
             self.items = list(data)
             if str(self.utilsWidget.seqBox.currentText()) == "ArraySequence":
                 seq = PySequence.ArraySequence_int(self.items, len(self.items))
+<<<<<<< Updated upstream
                 sort_type = PySequence.ShellSort_int() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
                     else PySequence.QuickSort_int()
+=======
+                sort_type = PySequence.ShellSort_int(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_int(compare)
+>>>>>>> Stashed changes
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
             else:
                 seq = PySequence.LinkedListSequence_int(self.items, len(self.items))
-                sort_type = PySequence.ShellSort_int() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_int()
+                sort_type = PySequence.ShellSort_int(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_int(compare)
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
         elif str(self.utilsWidget.typeBox.currentText()) == "float":
@@ -157,28 +177,28 @@ class MainWindow(QMainWindow):
             self.items = list(data)
             if str(self.utilsWidget.seqBox.currentText()) == "ArraySequence":
                 seq = PySequence.ArraySequence_float(self.items, len(self.items))
-                sort_type = PySequence.ShellSort_float() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_float()
+                sort_type = PySequence.ShellSort_float(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_float(compare)
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
             else:
                 seq = PySequence.LinkedListSequence_float(self.items, len(self.items))
-                sort_type = PySequence.ShellSort_float() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_float()
+                sort_type = PySequence.ShellSort_float(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_float(compare)
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
         else:
             self.items = text_clear.split(' ')
             if str(self.utilsWidget.seqBox.currentText()) == "ArraySequence":
                 seq = PySequence.ArraySequence_string(self.items, len(self.items))
-                sort_type = PySequence.ShellSort_string() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_string()
+                sort_type = PySequence.ShellSort_string(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_string(compare)
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
             else:
                 seq = PySequence.LinkedListSequence_string(self.items, len(self.items))
-                sort_type = PySequence.ShellSort_string() if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
-                    else PySequence.QuickSort_string()
+                sort_type = PySequence.ShellSort_string(compare) if str(self.utilsWidget.sortBox.currentText()) == "ShellSort" \
+                    else PySequence.QuickSort_string(compare)
                 sorted_seq = seq.Sort(sort_type)
                 text_edit = toString(sorted_seq)
 
