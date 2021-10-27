@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "../python_example/src/ArraySeq.h"
-#include "../python_example/src/LinkedListSeq.h"
-#include "../python_example/src/Complex.h"
-#include "../python_example/src/Sort.h"
+#include "../python_lib/src/ArraySeq.h"
+#include "../python_lib/src/LinkedListSeq.h"
+#include "../python_lib/src/Complex.h"
+#include "../python_lib/src/Sort.h"
 
 TEST(Array_and_List, Create) {
     DynamicArray<int> array = DynamicArray<int>(10);
