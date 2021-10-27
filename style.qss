@@ -1,0 +1,86 @@
+QMainWindow {
+    background-color: white;
+}
+
+QLabel {
+    color: black;
+    font: bold 14px;
+}
+
+QPushButton {
+    color: black;
+    background-color: white;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+    font: bold 14px;
+    min-width: 10em;
+    max-width: 13em;
+    padding: 6px;
+}
+
+QPushButton:pressed, QPushButton:on {
+    background: lightgrey;
+}
+
+QComboBox {
+    color: black;
+    font: bold 14px;
+    background-color: white;
+    selection-background-color: lightgray;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+    min-width: 10em;
+    max-width: 13em;
+    padding: 6px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 24px;
+
+    border-top-right-radius: 10px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 10px;
+}
+
+QComboBox::down-arrow {
+    image: url(./img/arrow.jpeg);
+    width: 13px;
+}
+
+QComboBox QAbstractItemView {
+    border: 2px solid white;
+    background-color: white;
+}
+
+QLineEdit {
+    color: black;
+    font: bold 14px;
+    background-color: white;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+    min-width: 10em;
+    max-width: 13em;
+    padding: 6px;
+    selection-background-color: darkgray;
+}
+
+QTextEdit#display {
+    color: black;
+    font: 14px;
+    background-color: white;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+    min-width: 10em;
+    min-height: 20em;
+    padding: 6px;
+    selection-background-color: darkgray;
+}
